@@ -16,10 +16,17 @@ class MainControler extends AbstractController
        return $this->render('main/home.html.twig');
     }
     /**
-     * @Route("/" , name="main_test")
+     * @Route("/test" , name="main_test")
      */
     public function test(){
+        $serie =[
+            "title"=>"game of throne",
+            "year"=> 2000,
+        ];
 
-        return $this->render('main/test.html.twig');
+        return $this->render('main/test.html.twig',[
+            "myserie"=>$serie,
+            "autrevar"=>24294892,
+        ]);
     }
 }

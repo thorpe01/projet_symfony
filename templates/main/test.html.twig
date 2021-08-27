@@ -1,13 +1,44 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=yes, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>projet_symfony</title>
-</head>
-<body>
-<h1>testou</h1>
-</body>
-</html>
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<h1>hello world </h1>
+    <div>{{ myserie.title }}{{ autrevar }}</div>
+<div>
+    {# date  #}
+    <div>
+        {{  'on est '  }}
+        {{ "yesterday"|date('D/M') }}
+    </div>
+    {# crée une variable #}
+    {% set name = "guillaume" %}
+    <h2>{{ name | upper}}</h2>
+
+    {# crée un tableau #}
+    {% set colors =["orange ","brown","turquoise","blue"] %}
+    <div> nombre de couleur:{{ colors|length }}</div>
+    <div>{{ colors |join(' #') }}</div>
+    {% for color in colors %}
+        <div>
+            {{ loop.index }}
+        </div>
+    <div style="background-color: {{ color }}">{{ color }}</div>
+    {% endfor %}
+
+    {# un objet #}
+    {% set book={
+        title :'pif',
+        year:2000,
+        auteur :"robert"}
+    %}
+    <h2>{{ book.auteur | upper }}</h2>
+    <div>
+      {% for key ,val in book %}
+        <div>
+            {{ key }} :{{ val }}
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock  %}
+{% block title %}{{ parent() }} | home {% endblock %}
