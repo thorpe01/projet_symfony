@@ -19,6 +19,9 @@
         {% include('inc/nav.html.twig') %}
     </header>
     <main>
+        {% set menu="menu1" %}
+        <h1>{{ menu }}</h1>
+
         {% block body %}
             <h1>salut </h1>
         {% endblock %}
