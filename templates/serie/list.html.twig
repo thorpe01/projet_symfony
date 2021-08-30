@@ -3,8 +3,16 @@
 {% block body %}
 
    <section>
+       {% for serie in series  %}
+       <article>
 
-       todo:afficher les séries
+           <a href="#" title="view serie's details">
+               <img src="" alt="{{ serie.string }}">
+           </a>
+           {% endfor %}
+       </article>
+
+       todo:liste des séries
    </section>
 
 

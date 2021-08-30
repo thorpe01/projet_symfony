@@ -20,7 +20,7 @@ class Series
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $string;
+    private $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -87,14 +87,14 @@ class Series
         return $this->id;
     }
 
-    public function getString(): ?string
+    public function getName(): ?string
     {
-        return $this->string;
+        return $this->name;
     }
 
-    public function setString(string $string): self
+    public function setName(string $name): self
     {
-        $this->string = $string;
+        $this->name = $name;
 
         return $this;
     }

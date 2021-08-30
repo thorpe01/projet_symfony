@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Series;
+use App\Repository\SeriesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,9 +19,12 @@ class SerieController extends AbstractController
     /**
      * @Route("/series", name="list")
      */
-    public function list(): Response
+    public function list(SeriesRepository $serieRepository ): Response
     {
+        $series = $serieRepository->findAll();
+
         return $this->render('serie/list.html.twig', [
+            "series"=>$series
         ]);
     }
     /**
@@ -48,7 +52,7 @@ class SerieController extends AbstractController
 
 
         // hydrate toutes les proprietés
-        $serie->setString('luc');
+        $serie->setName('luc');
         $serie->setBackdrop('starwars');
         $serie->setPoster('starwars');
         $serie->setDateCreated(new \DateTime());
