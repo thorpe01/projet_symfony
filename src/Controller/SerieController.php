@@ -21,8 +21,8 @@ class SerieController extends AbstractController
      */
     public function list(SeriesRepository $serieRepository ): Response
     {
-        $series = $serieRepository->findAll();
-
+        $series = $serieRepository->findBy([],['popularity'=>'DESC']);
+//dd($series);
         return $this->render('serie/list.html.twig', [
             "series"=>$series
         ]);
@@ -30,10 +30,13 @@ class SerieController extends AbstractController
     /**
      * @Route("/series/details/{id}", name="details")
      */
-    public function details( int $id): Response
+    public function details( int $id , SeriesRepository $seriesRepository): Response
     {
+           $serie=$seriesRepository->find($id);
+        return $this->render('serie/details.html.twig',[
+            "serie"=>$serie
 
-        return $this->render('serie/details.html.twig');
+        ]);
     }
     /**
      * @Route("/create", name="create")
