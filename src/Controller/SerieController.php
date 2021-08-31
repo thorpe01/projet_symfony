@@ -40,7 +40,7 @@ class SerieController extends AbstractController
      */
     public function create(Request $request): Response
     {
-        dd($request);
+
         return $this->render('serie/create.html.twig');
     }
     /**
@@ -57,11 +57,13 @@ class SerieController extends AbstractController
         $serie->setPoster('starwars');
         $serie->setDateCreated(new \DateTime());
         $serie->setFirstAirDate(new \DateTime("- 1 year"));
-        $serie->setFirstAirDate(new \DateTime("- 6 month"));
+        $serie->setLastAirDate(new \DateTime("- 6 month"));
         $serie->setGenres('drama');
         $serie->setOverview('bla bla bla ');
         $serie->setPopularity('123.00');
-        $serie->setVote('8.2');
+        $serie->setVote('8');
+        $serie->setStatus('top');
+        $serie->setTmdbId('3.1');
 
         dump($serie);
         $entityManager->persist($serie);
