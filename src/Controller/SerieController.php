@@ -66,6 +66,7 @@ class SerieController extends AbstractController
         $serie->setTmdbId('3.1');
 
         dump($serie);
+
         $entityManager->persist($serie);
         $entityManager->flush();
 
