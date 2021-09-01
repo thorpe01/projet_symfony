@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Series;
+use App\Form\SerieType;
 use App\Repository\SeriesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -43,8 +44,11 @@ class SerieController extends AbstractController
      */
     public function create(Request $request): Response
     {
-
-        return $this->render('serie/create.html.twig');
+              $serie =new Series();
+              $serieForm = $this->createForm(SerieType::class,$serie);
+        return $this->render('serie/create.html.twig',[
+            'serieForm'=>$serieForm->createView()
+        ]);
     }
     /**
      * @Route("/demo" , name="em-demo")

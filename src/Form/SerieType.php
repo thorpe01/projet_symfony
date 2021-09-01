@@ -3,10 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Series;
-use Doctrine\DBAL\Types\DateType;
-use Doctrine\DBAL\Types\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -33,7 +33,7 @@ class SerieType extends AbstractType
             ->add('popularity')
             ->add('genres')
             ->add('firstAirDate',DateType::class,[
-                'html'=>true,
+                'html5'=>true,
                 'widget'=>'single_text',
             ])
             ->add('backdrop')

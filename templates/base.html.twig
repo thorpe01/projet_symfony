@@ -8,8 +8,8 @@
     <title>{% block title  %} project {% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="icon" href='{{ asset('img/imagesite.png') }}'>
 </head>
 <body>
@@ -23,10 +23,11 @@
             <h1>salut </h1>
         {% endblock %}
     </main>
-    <footer>
-        {% include('inc/nav.html.twig') %}
+    <footer class="footer">
 
         <div>{{ "now"|date("Y") }} </div>
+
+
     </footer>
 </div>
 </body>
