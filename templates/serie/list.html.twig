@@ -2,9 +2,11 @@
 
 {% block body %}
 
-   <section class="series-list">
+   <section  >
+
+
        {% for serie in series  %}
-       <article>
+       <article class="series-list" >
 
            <a href="{{ path('serie_details',{'id': serie.id}) }}" title="view serie's details">
                <img src="{{ asset('img/posters/serie/' ~serie.poster)}}" alt="{{ serie.name }}" >
@@ -12,7 +14,7 @@
            {% endfor %}
        </article>
 
-       todo:liste des séries
+
    </section>
 
 

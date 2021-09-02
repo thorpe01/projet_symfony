@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SeriesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SeriesRepository::class)
@@ -18,6 +19,8 @@ class Series
     private $id;
 
     /**
+     * @Assert\NotBlank(message="please provide a title of a serie ")
+     * @Assert\Length(min=2,max=255)
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -28,11 +31,13 @@ class Series
     private $overview;
 
     /**
+     * @Assert\Choice(choice={"cancelled","ended","returning"})
      * @ORM\Column(type="string", length=50)
      */
     private $status;
 
     /**
+     * @Assert\Range(min="0",max="10",notInRangeMessage="not message")
      * @ORM\Column(type="decimal", precision=1, scale=1)
      */
     private $vote;
@@ -63,6 +68,7 @@ class Series
     private $poster;
 
     /**
+     * @Assert\GreaterThanOrEqual(propertyPath="firstAirDate")
      * @ORM\Column(type="date")
      */
     private $lastAirDate;
