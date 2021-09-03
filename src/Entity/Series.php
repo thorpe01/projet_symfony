@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SeriesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -38,7 +40,7 @@ class Series
 
     /**
      * @Assert\Range(min="0",max="10",notInRangeMessage="not message")
-     * @ORM\Column(type="decimal", precision=1, scale=1)
+     * @ORM\Column(type="decimal", precision=3, scale=1)
      */
     private $vote;
 
@@ -87,6 +89,16 @@ class Series
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $datemodified;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Season::class, mappedBy="serie")
+     */
+    private $seasons;
+
+    public function __construct()
+    {
+        $this->seasons = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -245,6 +257,36 @@ class Series
     public function setDatemodified(?\DateTimeInterface $datemodified): self
     {
         $this->datemodified = $datemodified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Season[]
+     */
+    public function getSeasons(): Collection
+    {
+        return $this->seasons;
+    }
+
+    public function addSeason(Season $season): self
+    {
+        if (!$this->seasons->contains($season)) {
+            $this->seasons[] = $season;
+            $season->setSerie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeason(Season $season): self
+    {
+        if ($this->seasons->removeElement($season)) {
+            // set the owning side to null (unless already changed)
+            if ($season->getSerie() === $this) {
+                $season->setSerie(null);
+            }
+        }
 
         return $this;
     }

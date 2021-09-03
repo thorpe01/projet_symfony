@@ -6,7 +6,18 @@
 
 {% block body %}
     <h2>{{ serie.name }}</h2>
-    <div>{{ serie.overview }}</div>
-    <div>{{ serie.vote }}</div>
+    <div>user rating:{{ serie.vote }}</div>
+    <div>categorized in :{{ serie.genres }}</div>
+    <div>serie status:{{ serie.status }}</div>
+    <div>Aired from:{{ serie.firstAirDate | date("Y-m-d") }} to {{ serie.lastAirDate | date("Y-m-d") }}</div>
+    <div>{{ serie.overview | nl2br }}</div>
+   <section>
+       <h3>seasons</h3>
+
+       {% for season in serie.seasons  %}
+       <article>
+           <img src="{{ asset('img/posters/serie/image2.png') }}" alt="{{ serie.name }} season #{{ season.number }}">
+       </article>
+   </section>
 {% endblock %}
 

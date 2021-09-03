@@ -8,9 +8,9 @@
     <title>{% block title  %} project {% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="icon" href='{{ asset('img/imagesite.png') }}'>
+    {% block extrastyles %}{% endblock %}
 </head>
 <body>
 <div class="container">
@@ -21,7 +21,7 @@
     {# read and display all flash messages #}
     {% for label, messages in app.flashes %}
         {% for message in messages %}
-            <div class="flash flash-{{ label }} >
+            <div class=" flash flash-{{ label }}" >
                 {{ message }}
             </div>
         {% endfor %}
@@ -31,12 +31,15 @@
             <h1>salut </h1>
         {% endblock %}
     </main>
-    <footer >
 
-        <div>{{ "now"|date("Y") }} </div>
-
-
+<div >
+    <footer  class="footer">
+        {{ "now"|date("Y") }}
     </footer>
 </div>
+
+
+</div>
+
 </body>
 </html>
